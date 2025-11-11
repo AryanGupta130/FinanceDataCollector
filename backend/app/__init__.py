@@ -6,7 +6,7 @@ def create_app():
     CORS(app)  # Enable CORS for frontend
     
     # Register blueprints
-    from app.routes.sec_routes import sec_bp
+    from backend.app.routes.stock_routes import sec_bp
     app.register_blueprint(sec_bp, url_prefix='/api')
     
     return app
