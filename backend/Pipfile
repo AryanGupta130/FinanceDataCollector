@@ -1,0 +1,7 @@
+[packages]
+flask = "*"
+flask-cors = "*"
+requests = "*"
+pandas = "*"
+
+[dev-packages]

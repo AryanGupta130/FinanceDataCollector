@@ -1,11 +1,14 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ff88c6939e3090788e917cfdecf1af872168b83c8803457853061495493b5a71"
+            "sha256": "2956d8a02f717dad36d84a7e867b06143c31a79d5d1faf9272d67fa3d6d37489"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.11"
+            "flask": "*",
+            "pandas": "*",
+            "python_version": "3.11",
+            "react": "*"
         },
         "sources": [
             {
