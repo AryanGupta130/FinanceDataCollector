@@ -1,0 +1,112 @@
+.stock-info-table {
+    background: #2d2d2d;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 20px;
+    color: white;
+}
+
+.stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #404040;
+}
+
+.stock-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.current-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00d09c; /* Green color for positive, you can change based on price movement */
+}
+
+.table-container {
+    margin-bottom: 24px;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table tr {
+    border-bottom: 1px solid #404040;
+}
+
+.info-table tr:last-child {
+    border-bottom: none;
+}
+
+.info-table td {
+    padding: 12px 8px;
+    vertical-align: top;
+}
+
+.info-table .label {
+    font-weight: 600;
+    color: #cccccc;
+    width: 140px;
+}
+
+.info-table .value {
+    color: white;
+    text-align: right;
+}
+
+.description-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #404040;
+}
+
+.description-section h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+.description {
+    color: #cccccc;
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.message {
+    margin-top: 16px;
+    padding: 12px;
+    background: #3d3d3d;
+    border-radius: 4px;
+    color: #888;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .stock-info-table {
+        padding: 16px;
+    }
+    
+    .stock-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .current-price {
+        font-size: 1.5rem;
+    }
+    
+    .info-table .label {
+        width: 120px;
+    }
+}
