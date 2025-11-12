@@ -4,14 +4,17 @@
     background: #1a1a1a;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    /* Remove align-items: center and justify-content: center */
+    /* so the navbar stays at top and content flows normally */
+    padding: 0; /* Remove the 20px padding */
 }
+
+/* Remove the old .top-navbar class since we're using the component */
 
 .home-header {
     text-align: center;
     margin-bottom: 60px;
+    padding-top: 40px; /* Add some top padding since we removed the flex centering */
 }
 
 .home-header h1 {
@@ -29,8 +32,11 @@
 .home-main {
     width: 100%;
     max-width: 500px;
+    margin: 0 auto; /* Center the main content */
+    padding: 0 20px; /* Add side padding */
 }
 
+/* Rest of your existing CSS remains the same */
 .search-section {
     background: #2d2d2d;
     padding: 40px;

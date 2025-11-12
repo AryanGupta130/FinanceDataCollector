@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './HomePage.css';
+import './StockAnalysis.css';
 import StockInfoTable from './components/StockInfoTable';
+import NavbarComponent from './components/NavBar';
 
-const HomePage: React.FC = () => {
+const StockAnalysis: React.FC = () => {
     const [ticker, setTicker] = useState('');
     const [loading, setLoading] = useState(false);
     const [stockData, setStockData] = useState<any>(null);
@@ -67,4 +68,4 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default HomePage;
+export default StockAnalysis;

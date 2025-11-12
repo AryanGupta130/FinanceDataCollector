@@ -1,0 +1,111 @@
+/* Base navbar styles */
+.navbar-custom {
+    background-color: #2d2d2d !important;
+    border-bottom: 1px solid #404040;
+    padding: 0;
+}
+
+.navbar-brand-custom {
+    color: #ffffff !important;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Key change: Evenly distribute nav items across entire width */
+.navbar-nav-custom {
+    display: flex;
+    justify-content: space-between; /* This spreads items evenly */
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link-custom {
+    color: #cccccc !important;
+    font-weight: 500;
+    padding: 1rem 1.25rem !important;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex: 1; /* Make each item take equal space */
+    text-align: center;
+    margin: 0 0.1rem;
+}
+
+.nav-link-custom:hover {
+    color: #ffffff !important;
+    background-color: #404040;
+}
+
+/* Dropdown styling */
+.nav-dropdown-custom {
+    color: #cccccc !important;
+    flex: 1; /* Make dropdown take equal space too */
+    text-align: center;
+}
+
+.nav-dropdown-custom > .dropdown-toggle {
+    padding: 1rem 1.25rem !important;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-dropdown-custom:hover {
+    color: #ffffff !important;
+    background-color: #404040;
+}
+
+.dropdown-menu-custom {
+    background-color: #2d2d2d !important;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    margin-top: 0;
+}
+
+.dropdown-item-custom {
+    color: #cccccc !important;
+    padding: 0.75rem 1.25rem;
+}
+
+.dropdown-item-custom:hover {
+    background-color: #404040 !important;
+    color: #ffffff !important;
+}
+
+/* Navbar toggle */
+.navbar-toggler {
+    border: 1px solid #404040 !important;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Mobile styles */
+@media (max-width: 991px) {
+    .navbar-nav-custom {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .nav-link-custom,
+    .nav-dropdown-custom {
+        flex: none;
+        width: 100%;
+        margin: 0.1rem 0;
+    }
+    
+    .dropdown-menu-custom {
+        position: static !important;
+        float: none;
+        width: 100%;
+        border: none;
+        background-color: #363636 !important;
+    }
+}

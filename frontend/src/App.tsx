@@ -1,22 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-function Home() { return <h1>Home Page</h1>; }
-function About() { return <h1>About Us</h1>; }
+import { Routes, Route } from 'react-router-dom';
+import NavbarComponent from './StockAnalysis/components/NavBar';
+import StockAnalysis from './StockAnalysis/SotckAnalysis';
 
 function App() {
     return (
-        <Router>
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
-            </nav>
-            
+        <div className="App">
+            <NavbarComponent />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/stock-analysis" element={<StockAnalysis />} />
             </Routes>
-        </Router>
+        </div>
     );
 }
 
