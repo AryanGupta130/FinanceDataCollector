@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './BlackScholes.css';
+import OptionsHeatMap from './OptionsHeatMap'; // Import the heat map component
 
 const BlackScholes: React.FC = () => {
     const [stockPrice, setStockPrice] = useState('');
@@ -10,6 +12,7 @@ const BlackScholes: React.FC = () => {
     const [putPrice, setPutPrice] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showHeatMap, setShowHeatMap] = useState(false); // New state for heat map visibility
 
     const handleCalculate = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -17,6 +20,7 @@ const BlackScholes: React.FC = () => {
         setError(null);
         setCallPrice(null);
         setPutPrice(null);
+        setShowHeatMap(false); // Hide heat map when recalculating
 
         try {
             const response = await fetch(`http://localhost:5001/api/blackscholes/callprice?stock_price=${stockPrice}&strike_price=${strikePrice}&time_to_expiry=${timeToExpiry}&risk_free_rate=${riskFreeRate}&volatility=${volatility}`);
@@ -33,64 +37,121 @@ const BlackScholes: React.FC = () => {
         }
     };
 
+    const toggleHeatMap = () => {
+        setShowHeatMap(!showHeatMap);
+    };
+
     return (
-        <div className="black-scholes-calculator">
-            <h2>Black-Scholes Option Pricing Calculator</h2>
-            <form onSubmit={handleCalculate} className="calculator-form">
-                <input
-                    type="number"
-                    step="any"
-                    value={stockPrice}
-                    onChange={(e) => setStockPrice(e.target.value)}
-                    placeholder="Stock Price"
-                    required
-                />
-                <input
-                    type="number"
-                    step="any"
-                    value={strikePrice}
-                    onChange={(e) => setStrikePrice(e.target.value)}
-                    placeholder="Strike Price"
-                    required
-                />
-                <input
-                    type="number"
-                    step="any"
-                    value={timeToExpiry}
-                    onChange={(e) => setTimeToExpiry(e.target.value)}
-                    placeholder="Time to Expiry (years)"
-                    required
-                />
-                <input
-                    type="number"
-                    step="any"
-                    value={riskFreeRate}
-                    onChange={(e) => setRiskFreeRate(e.target.value)}
-                    placeholder="Risk-Free Rate (decimal)"
-                    required
-                />
-                <input
-                    type="number"
-                    step="any"
-                    value={volatility}
-                    onChange={(e) => setVolatility(e.target.value)}
-                    placeholder="Volatility (decimal)"
-                    required
-                />
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Calculating...' : 'Calculate'}
-                </button>
-            </form>
+        <div className="black-scholes-page">
+            <header className="black-scholes-header">
+                <h1>Black-Scholes Option Pricing</h1>
+                <p>Calculate fair prices for call and put options using the Black-Scholes model</p>
+            </header>
+            
+            <main className="black-scholes-main">
+                <section className="calculator-section">
+                    <form onSubmit={handleCalculate} className="calculator-form">
+                        <input
+                            type="number"
+                            step="any"
+                            value={stockPrice}
+                            onChange={(e) => setStockPrice(e.target.value)}
+                            placeholder="Stock Price"
+                            className="calculator-input"
+                            required
+                        />
+                        <input
+                            type="number"
+                            step="any"
+                            value={strikePrice}
+                            onChange={(e) => setStrikePrice(e.target.value)}
+                            placeholder="Strike Price"
+                            className="calculator-input"
+                            required
+                        />
+                        <input
+                            type="number"
+                            step="any"
+                            value={timeToExpiry}
+                            onChange={(e) => setTimeToExpiry(e.target.value)}
+                            placeholder="Time to Expiry (years)"
+                            className="calculator-input"
+                            required
+                        />
+                        <input
+                            type="number"
+                            step="any"
+                            value={riskFreeRate}
+                            onChange={(e) => setRiskFreeRate(e.target.value)}
+                            placeholder="Risk-Free Rate (e.g., 0.05 for 5%)"
+                            className="calculator-input"
+                            required
+                        />
+                        <input
+                            type="number"
+                            step="any"
+                            value={volatility}
+                            onChange={(e) => setVolatility(e.target.value)}
+                            placeholder="Volatility (e.g., 0.20 for 20%)"
+                            className="calculator-input"
+                            required
+                        />
+                        
+                        <div className="button-group">
+                            <button 
+                                type="submit" 
+                                className="calculate-button"
+                                disabled={loading}
+                            >
+                                {loading ? 'Calculating...' : 'Calculate Option Prices'}
+                            </button>
+                            
+                            {callPrice !== null && (
+                                <button 
+                                    type="button" 
+                                    className="heatmap-toggle-button"
+                                    onClick={toggleHeatMap}
+                                >
+                                    {showHeatMap ? 'Hide Heat Map' : 'Show Heat Map'}
+                                </button>
+                            )}
+                        </div>
+                    </form>
+                    
+                    {error && (
+                        <div className="error-message">
+                            {error}
+                        </div>
+                    )}
 
-            {error && <div className="error-message">{error}</div>}
+                    {callPrice !== null && (
+                        <div className="pricing-results">
+                            <h3>Option Prices</h3>
+                            <div className="price-cards">
+                                <div className="price-card call-price">
+                                    <h4>Call Option</h4>
+                                    <div className="price">${callPrice.toFixed(2)}</div>
+                                </div>
+                                <div className="price-card put-price">
+                                    <h4>Put Option</h4>
+                                    <div className="price">${putPrice?.toFixed(2)}</div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
-            {callPrice !== null && (
-                <div className="result">
-                    <h3>Option Prices:</h3>
-                    <p>Call Price: ${callPrice.toFixed(2)}</p>
-                    <p>Put Price: ${putPrice?.toFixed(2)}</p>
-                </div>
-            )}
+                    {/* Heat Map Section */}
+                    {showHeatMap && callPrice !== null && (
+                        <OptionsHeatMap
+                            stockPrice={Number(stockPrice)}
+                            strikePrice={Number(strikePrice)}
+                            timeToExpiry={Number(timeToExpiry)}
+                            riskFreeRate={Number(riskFreeRate)}
+                            baseVolatility={Number(volatility)}
+                        />
+                    )}
+                </section>
+            </main>
         </div>
     );
 };

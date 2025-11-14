@@ -1,0 +1,166 @@
+.black-scholes-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: #1a1a1a;
+    padding: 0;
+}
+
+.black-scholes-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-top: 40px;
+}
+
+.black-scholes-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 16px 0;
+    color: white;
+}
+
+.black-scholes-header p {
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin: 0;
+}
+
+.black-scholes-main {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.calculator-section {
+    background: #2d2d2d;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #404040;
+}
+
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.calculator-input {
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    border: 1px solid #555;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background: #1a1a1a;
+    color: white;
+}
+
+.calculator-input:focus {
+    border-color: #888;
+}
+
+.calculator-input::placeholder {
+    color: #777;
+}
+
+.calculate-button {
+    background: #555;
+    color: white;
+    padding: 16px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.calculate-button:hover:not(:disabled) {
+    background: #666;
+}
+
+.calculate-button:active {
+    background: #444;
+}
+
+.calculate-button:disabled {
+    background: #333;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.error-message {
+    background: #5c2a2a;
+    color: #ff6b6b;
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid #7a3a3a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pricing-results {
+    margin-top: 30px;
+}
+
+.pricing-results h3 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.price-card {
+    background: #363636;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #404040;
+}
+
+.price-card h4 {
+    color: #cccccc;
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+}
+
+.price-card .price {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.call-price {
+    border-left: 4px solid #00d09c;
+}
+
+.put-price {
+    border-left: 4px solid #ff6b6b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .black-scholes-header h1 {
+        font-size: 2rem;
+    }
+    
+    .calculator-section {
+        padding: 30px 20px;
+    }
+    
+    .price-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .price-card .price {
+        font-size: 1.5rem;
+    }
+}
